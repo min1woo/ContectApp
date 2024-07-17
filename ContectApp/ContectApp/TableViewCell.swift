@@ -15,6 +15,10 @@ final class TableViewCell: UITableViewCell {
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        image.layer.borderWidth = 1
+        image.layer.borderColor = UIColor.gray.cgColor
+        image.layer.cornerRadius = 35
         return image
     }()
     
@@ -53,7 +57,7 @@ final class TableViewCell: UITableViewCell {
         profileImage.snp.makeConstraints {
             $0.centerY.equalTo(contentView)
             $0.leading.equalToSuperview().inset(10)
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(70)
         }
         
         nameLabel.snp.makeConstraints {
