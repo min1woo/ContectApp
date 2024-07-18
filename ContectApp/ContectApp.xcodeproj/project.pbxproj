@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		452542BA2C47A6650075D3C4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 452542B92C47A6650075D3C4 /* Kingfisher */; };
+		452542BD2C47B06C0075D3C4 /* PhoneBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452542BB2C47B06C0075D3C4 /* PhoneBook+CoreDataClass.swift */; };
+		452542BE2C47B06C0075D3C4 /* PhoneBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452542BC2C47B06C0075D3C4 /* PhoneBook+CoreDataProperties.swift */; };
+		452542C02C47DD3C0075D3C4 /* PhoneBookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452542BF2C47DD3C0075D3C4 /* PhoneBookManager.swift */; };
 		455119D72C45001400005272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455119D62C45001400005272 /* AppDelegate.swift */; };
 		455119DB2C45001400005272 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455119DA2C45001400005272 /* ViewController.swift */; };
 		455119E12C45001400005272 /* ContectApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 455119DF2C45001400005272 /* ContectApp.xcdatamodeld */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		452542BB2C47B06C0075D3C4 /* PhoneBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneBook+CoreDataClass.swift"; sourceTree = "<group>"; };
+		452542BC2C47B06C0075D3C4 /* PhoneBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		452542BF2C47DD3C0075D3C4 /* PhoneBookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBookManager.swift; sourceTree = "<group>"; };
 		455119D32C45001400005272 /* ContectApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContectApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		455119D62C45001400005272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		455119DA2C45001400005272 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +54,8 @@
 		455119CA2C45001400005272 = {
 			isa = PBXGroup;
 			children = (
+				452542BB2C47B06C0075D3C4 /* PhoneBook+CoreDataClass.swift */,
+				452542BC2C47B06C0075D3C4 /* PhoneBook+CoreDataProperties.swift */,
 				455119D52C45001400005272 /* ContectApp */,
 				455119D42C45001400005272 /* Products */,
 			);
@@ -72,6 +80,7 @@
 				455119DA2C45001400005272 /* ViewController.swift */,
 				455119F52C451A7D00005272 /* TableViewCell.swift */,
 				455119F72C46506000005272 /* AddFriendViewController.swift */,
+				452542BF2C47DD3C0075D3C4 /* PhoneBookManager.swift */,
 			);
 			path = ContectApp;
 			sourceTree = "<group>";
@@ -157,9 +166,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				455119E12C45001400005272 /* ContectApp.xcdatamodeld in Sources */,
+				452542C02C47DD3C0075D3C4 /* PhoneBookManager.swift in Sources */,
 				455119F62C451A7D00005272 /* TableViewCell.swift in Sources */,
 				455119DB2C45001400005272 /* ViewController.swift in Sources */,
 				455119D72C45001400005272 /* AppDelegate.swift in Sources */,
+				452542BD2C47B06C0075D3C4 /* PhoneBook+CoreDataClass.swift in Sources */,
+				452542BE2C47B06C0075D3C4 /* PhoneBook+CoreDataProperties.swift in Sources */,
 				455119F82C46506000005272 /* AddFriendViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

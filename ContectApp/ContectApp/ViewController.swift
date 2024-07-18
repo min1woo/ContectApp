@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
+    // 연락처 저장소
+    var phoneBooks: [PhoneBook] = []
     
     // 타이틀 라벨 - 친구목록
     private let titleLable: UILabel = {
@@ -19,7 +21,7 @@ class ViewController: UIViewController {
         return label
     }()
     // 추가 버튼
-   private lazy var addButton = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addFriends))
+   private lazy var addButton = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addPhoneBook))
     
     
     // 친구목록이 들어갈 테이블 뷰
@@ -37,8 +39,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         self.navigationItem.rightBarButtonItem = addButton
-      
+        phoneBooks = PhoneBookManager.shared.fetchPhoneBook()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        phoneBooks = PhoneBookManager.shared.fetchPhoneBook()
+        tableView.reloadData() // 테이블 뷰 갱신
+    }
+    
+    
+    
     private func configureUI() {
         view.backgroundColor = .white
         
@@ -77,17 +88,19 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.id) as? TableViewCell else {
             return UITableViewCell()
         }
-        cell.configureCell()
+        let phoneBook = phoneBooks[indexPath.row] // 해당 인덱스의 연락처 가져오기
+        cell.configureCell(name: phoneBook.name ?? "", phoneNumber: phoneBook.phoneNumber ?? "", profileImageURL: phoneBook.profileImageURL ?? "")
         return cell
     }
     
-    // 테이블 뷰 섹션의 행이 몇 개 들어가는가. 여기서는 섹션은 없으니 총 행 갯수를 적어주면 됨
+    // 테이블 뷰 섹션의 행이 몇 개 들어가는가 (저장된 연락처 갯수만큼 반환)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 5
+        return phoneBooks.count
     }
     
-    @objc private func addFriends() {
+    @objc private func addPhoneBook() {
         self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
     }
+    
 }
 

@@ -12,19 +12,23 @@ import Kingfisher
 
 class AddFriendViewController: UIViewController {
     
+    var phoneBooks: [PhoneBook] = []
+    
     // 적용 버튼
     private lazy var applyButton = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(tappedApply))
     
     // 프로필 이미지
     private let profileImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleToFill
         image.clipsToBounds = true
         image.layer.borderWidth = 1
         image.layer.borderColor = UIColor.gray.cgColor
         image.layer.cornerRadius = 75
         return image
     }()
+    
+    private var profileImageURL: String?
     
     // 랜덤이미지 생성 버튼
     private lazy var randomButton: UIButton = {
@@ -66,16 +70,21 @@ class AddFriendViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureUI()
+        phoneBooks = PhoneBookManager.shared.fetchPhoneBook() // 저장된 연락처 불러오기
         
         // 버튼을 뷰에 올리기
         self.navigationItem.rightBarButtonItem = applyButton
         // 타이틀 라벨 올리기
         self.title = "연락처 추가"
     }
+    
+    
+    
     // kingPisher 을 사용하여 서버에서 이미지 불러오기
-    private func makeRandomPoketmon() {
+    public func makeRandomPoketmon() {
        
-        var imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(Int.random(in: 0...1000)).png"
+        let imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(Int.random(in: 0...1000)).png"
+        profileImageURL = imageUrl
         profileImage.kf.setImage(with: URL(string: imageUrl))
     }
     
@@ -113,10 +122,21 @@ class AddFriendViewController: UIViewController {
     
     
     // 적용버튼 액션 매서드
-    @objc private func tappedApply() {
+    @objc func tappedApply() {
+        // 이름과 전화번호가 입력되었는지 확인
+        guard let name = nameTextView.text, !name.isEmpty,
+              let phoneNumber = phonenumberTextView.text, !phoneNumber.isEmpty else {
+            return
+        }
         
+        // 이전화면으로 돌아가기
+        navigationController?.popViewController(animated: true)
+        
+        // Core Data 에 연락처 저장
+        PhoneBookManager.shared.savePhoneBook(name: name, phoneNumber: phoneNumber, profileImageURL: profileImageURL ?? "")
     }
-    
+   
+    // 랜덤 이미지 생성 버튼 액션 메서드
     @objc private func loadImage() {
         makeRandomPoketmon()
     }

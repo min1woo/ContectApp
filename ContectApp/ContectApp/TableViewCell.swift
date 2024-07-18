@@ -10,11 +10,13 @@ import SnapKit
 
 final class TableViewCell: UITableViewCell {
     
+    var phoneBook: [PhoneBook] = []
+    
     static let id = "TableViewCell"
     
     private let profileImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.borderWidth = 1
         image.layer.borderColor = UIColor.gray.cgColor
@@ -71,9 +73,14 @@ final class TableViewCell: UITableViewCell {
         }
     }
     
-    public func configureCell() {
-        profileImage.image = UIImage(named: "good")
-        nameLabel.text = "name"
-        phoneNumber.text = "010-0000-0000"
+    // 셀 구성 메서드
+    public func configureCell(name: String, phoneNumber: String, profileImageURL: String?) {
+        if let urlString = profileImageURL, let url = URL(string: urlString) {
+            profileImage.kf.setImage(with: url)
+        } else {
+            return
+        }
+        nameLabel.text = name
+        self.phoneNumber.text = phoneNumber
     }
 }
