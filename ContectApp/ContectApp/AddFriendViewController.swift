@@ -125,7 +125,12 @@ class AddFriendViewController: UIViewController {
     @objc func tappedApply() {
         // 이름과 전화번호가 입력되었는지 확인
         guard let name = nameTextView.text, !name.isEmpty,
-              let phoneNumber = phonenumberTextView.text, !phoneNumber.isEmpty else {
+              let phoneNumber = phonenumberTextView.text, !phoneNumber.isEmpty,
+              let profileImageURL = profileImageURL  else {
+            // 경고 메세지 출력
+            let alert = UIAlertController(title: "입력오류", message: "이름, 전화번호, 프로필이미지가 모두 필요합니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            present(alert, animated: true)
             return
         }
         
@@ -133,7 +138,7 @@ class AddFriendViewController: UIViewController {
         navigationController?.popViewController(animated: true)
         
         // Core Data 에 연락처 저장
-        PhoneBookManager.shared.savePhoneBook(name: name, phoneNumber: phoneNumber, profileImageURL: profileImageURL ?? "")
+        PhoneBookManager.shared.savePhoneBook(name: name, phoneNumber: phoneNumber, profileImageURL: profileImageURL)
     }
    
     // 랜덤 이미지 생성 버튼 액션 메서드

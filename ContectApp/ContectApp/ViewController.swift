@@ -82,6 +82,7 @@ extension ViewController: UITableViewDelegate {
     }
 }
 extension ViewController: UITableViewDataSource {
+    
     // 테이블 뷰의 indexPath 마다 테이블 뷰 셀을 지정
     // indexpath: 테이블 뷰의 행과 섹션을 의미
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
